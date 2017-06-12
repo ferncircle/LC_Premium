@@ -5,6 +5,7 @@ package com.chawkalla.lc.premium.dp;
 
 /**
  * https://leetcode.com/problems/encode-string-with-shortest-length/#/description
+ * 
  * Given a non-empty string, encode the string such that its encoded length is the shortest.
 
 The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly k times.
@@ -12,7 +13,8 @@ The encoding rule is: k[encoded_string], where the encoded_string inside the squ
 Note:
 k will be a positive integer and encoded string will not be empty or have extra space.
 You may assume that the input string contains only lowercase English letters. The string's length is at most 160.
-If an encoding process does not make the string shorter, then do not encode it. If there are several solutions, return any of them is fine.
+If an encoding process does not make the string shorter, then do not encode it. If there are several solutions, return any of 
+them is fine.
 Example 1:
 
 Input: "aaa"
@@ -45,11 +47,13 @@ Hide Tags
 
 
 Solution:
-This is the first question I have answered in Leetcode. I hope you guys will like my solution. The approach here is simple. We will form 2-D array of Strings.
+This is the first question I have answered in Leetcode. I hope you guys will like my solution. The approach here is simple. 
+We will form 2-D array of Strings.
 dp[i][j] = string from index i to index j in encoded form.
 
 We can write the following formula as:-
-dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+1][j]) or if we can find some pattern in string from i to j which will result in more less length.
+dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+1][j]) or if we can find some pattern in string from i to j which will result in more 
+less length.
 
 Time Complexity = O(n^3)
  *

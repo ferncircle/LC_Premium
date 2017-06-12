@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.graph;
+package com.chawkalla.lc.premium.graph.gotit;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -14,7 +14,9 @@ import java.util.Set;
  * 
  * https://leetcode.com/problems/alien-dictionary/#/description
  * 
- * There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. Derive the order of letters in this language.
+ * There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you. You receive 
+ * a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules of this new language. 
+ * Derive the order of letters in this language.
 
 Example 1:
 Given the following words in dictionary,

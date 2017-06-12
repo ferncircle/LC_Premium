@@ -7,7 +7,9 @@ import java.util.stream.IntStream;
 
 /**
  * https://leetcode.com/problems/sentence-screen-fitting/#/description
- * Given a rows x cols screen and a sentence represented by a list of non-empty words, find how many times the given sentence can be fitted on the screen.
+ * 
+ * Given a rows x cols screen and a sentence represented by a list of non-empty words, find how many times the given sentence 
+ * can be fitted on the screen.
 
 Note:
 
@@ -77,7 +79,9 @@ Consider the following repeating sentence string, with positions of the start ch
 "abc de f abc de f abc de f ..."
  ^      ^     ^    ^      ^
  0      7     13   18     25
-Our goal is to find the start position of the row next to the last row on the screen, which is 25 here. Since actually it's the length of everything earlier, we can get the answer by dividing this number by the length of (non-repeated) sentence string. Note that the non-repeated sentence string has a space at the end; it is "abc de f " in this example.
+Our goal is to find the start position of the row next to the last row on the screen, which is 25 here. Since actually it's the 
+length of everything earlier, we can get the answer by dividing this number by the length of (non-repeated) sentence string. 
+Note that the non-repeated sentence string has a space at the end; it is "abc de f " in this example.
 
 Here is how we find that position. In each iteration, we need to adjust start based on spaces either added or removed.
 
@@ -87,6 +91,20 @@ Here is how we find that position. In each iteration, we need to adjust start ba
               012345             // start=13+6-1=18 (1 space added)
                    012345        // start=18+6+1=25 (1 space added)
                           012345
+                          
+ 
+ Solution 2:
+ First off, we can easily come up with a brute-force solution. The basic idea of optimized solution is that
+
+    sub-problem: if there's a new line which is starting with certain index in sentence, what is the starting index of next line 
+    (nextIndex[]). BTW, we compute how many times the pointer in current line passes over the last index (times[]).
+    relation : ans += times[i], i = nextIndex[i], for _ in 0..<row. where i indicates what is the first word in the current line.
+
+Time complexity : O(n*(cols/lenAverage)) + O(rows), where n is the length of sentence array, lenAverage is the average length of 
+the words in the input array.
+
+
+
  *
  *
  */
@@ -98,7 +116,7 @@ public class SentenceScreenFitting {
         for (int i = 0; i < rows; i++) {
             start += cols;
             if (s.charAt(start % l) == ' ') {
-                start++;
+                start++;	
             } else {
                 while (start > 0 && s.charAt((start-1) % l) != ' ') {
                     start--;
@@ -115,8 +133,37 @@ public class SentenceScreenFitting {
         IntStream.range(1, s.length()).forEach(i -> offset[i] = s.charAt(i) == ' ' ? 1 : offset[i-1]-1);
         return IntStream.range(0, rows).reduce(0, (a, b) -> a + cols + offset[(a+cols) % s.length()]) / s.length();
     }
+	
+	public int wordsTypingDP(String[] sentence, int rows, int cols) {
+        int[] nextIndex = new int[sentence.length];
+        int[] times = new int[sentence.length];
+        for(int i=0;i<sentence.length;i++) {
+            int curLen = 0;
+            int cur = i;
+            int time = 0;
+            while(curLen + sentence[cur].length() <= cols) {
+                curLen += sentence[cur++].length()+1;
+                if(cur==sentence.length) {
+                    cur = 0;
+                    time ++;
+                }
+            }
+            nextIndex[i] = cur;
+            times[i] = time;
+        }
+        int ans = 0;
+        int cur = 0;
+        for(int i=0; i<rows; i++) {
+            ans += times[cur];
+            cur = nextIndex[cur];
+        }
+        return ans;
+    }
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		System.out.println(new SentenceScreenFitting().wordsTypingDP(new String[]{
+				"abc", "de", "f"
+		}, 4, 6));
 
 	}
 

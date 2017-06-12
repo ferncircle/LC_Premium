@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.design;
+package com.chawkalla.lc.premium.design.gotit;
 
 import java.util.Iterator;
 import java.util.List;

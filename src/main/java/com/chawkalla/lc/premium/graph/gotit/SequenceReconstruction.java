@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.graph;
+package com.chawkalla.lc.premium.graph.gotit;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,7 +13,10 @@ import java.util.Set;
 /**
  * https://leetcode.com/problems/sequence-reconstruction/#/description
  * 
- * Check whether the original sequence org can be uniquely reconstructed from the sequences in seqs. The org sequence is a permutation of the integers from 1 to n, with 1 ≤ n ≤ 104. Reconstruction means building a shortest common supersequence of the sequences in seqs (i.e., a shortest sequence so that all sequences in seqs are subsequences of it). Determine whether there is only one sequence that can be reconstructed from seqs and it is the org sequence.
+ * Check whether the original sequence org can be uniquely reconstructed from the sequences in seqs. The org sequence is a 
+ * permutation of the integers from 1 to n, with 1 ≤ n ≤ 104. Reconstruction means building a shortest common supersequence 
+ * of the sequences in seqs (i.e., a shortest sequence so that all sequences in seqs are subsequences of it). Determine whether 
+ * there is only one sequence that can be reconstructed from seqs and it is the org sequence.
 
 Example 1:
 
@@ -53,7 +56,8 @@ org: [4,1,5,2,6,3], seqs: [[5,2,6,3],[4,1,5,2]]
 Output:
 true
 UPDATE (2017/1/8):
-The seqs parameter had been changed to a list of list of strings (instead of a 2d array of strings). Please reload the code definition to get the latest changes.
+The seqs parameter had been changed to a list of list of strings (instead of a 2d array of strings). Please reload the code 
+definition to get the latest changes.
 
 Hide Company Tags Google
 Hide Tags

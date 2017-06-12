@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.design;
+package com.chawkalla.lc.premium.design.gotit;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,9 @@ Hide Tags
 
 
 Solution:
-The big data test only have the condition that lots of add and few find. In fact, there has to be one operation's time complexity is O(n) and the other is O(1), no matter add or find. So clearly there's trade off when solve this problem, prefer quick find or quick add.
+The big data test only have the condition that lots of add and few find. In fact, there has to be one operation's time 
+complexity is O(n) and the other is O(1), no matter add or find. So clearly there's trade off when solve this problem, 
+prefer quick find or quick add.
 
 If consider more find and less add or we only care time complexity in finding.For example, add operation can be pre-done.
 

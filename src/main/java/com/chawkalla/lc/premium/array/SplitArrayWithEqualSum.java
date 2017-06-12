@@ -12,7 +12,8 @@ import java.util.HashSet;
 
 0 < i, i + 1 < j, j + 1 < k < n - 1
 Sum of subarrays (0, i - 1), (i + 1, j - 1), (j + 1, k - 1) and (k + 1, n - 1) should be equal.
-where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the element indexed R.
+where we define that subarray (L, R) represents a slice of the original array starting from the element indexed L to the 
+element indexed R.
 Example:
 Input: [1,2,1,2,1,2,1]
 Output: True
@@ -31,7 +32,9 @@ Show Tags
  *
  *Solution:
  *Here j is used for middle cut, i for left cut and k for right cut.
-Iterate middle cuts and then find left cuts which divides the first half into two equal quarters, store that quarter sums in the hashset. Then find right cuts which divides the second half into two equal quarters and check if quarter sum is present in the hashset. If yes return true.
+Iterate middle cuts and then find left cuts which divides the first half into two equal quarters, store that quarter 
+sums in the hashset. Then find right cuts which divides the second half into two equal quarters and check if quarter 
+sum is present in the hashset. If yes return true.
  */
 public class SplitArrayWithEqualSum {
 

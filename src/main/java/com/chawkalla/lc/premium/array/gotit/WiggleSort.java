@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.array;
+package com.chawkalla.lc.premium.array.gotit;
 
 /**
  * https://leetcode.com/problems/wiggle-sort/#/description

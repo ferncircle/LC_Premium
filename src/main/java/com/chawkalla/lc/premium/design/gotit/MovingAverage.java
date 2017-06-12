@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.design;
+package com.chawkalla.lc.premium.design.gotit;
 
 /**
  * leetcode.com/problems/moving-average-from-data-stream/#/description

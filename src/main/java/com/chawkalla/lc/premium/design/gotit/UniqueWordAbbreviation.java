@@ -1,14 +1,15 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.design;
+package com.chawkalla.lc.premium.design.gotit;
 
 import java.util.HashMap;
 
 /**
  * https://leetcode.com/problems/unique-word-abbreviation/#/description
  * 
- * An abbreviation of a word follows the form <first letter><number><last letter>. Below are some examples of word abbreviations:
+ * An abbreviation of a word follows the form <first letter><number><last letter>. Below are some examples of word 
+ * abbreviations:
 
 a) it                      --> it    (no abbreviation)
 
@@ -22,7 +23,8 @@ c) i|nternationalizatio|n  --> i18n
               1
      1---5----0
 d) l|ocalizatio|n          --> l10n
-Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is unique if no other word from the dictionary has the same abbreviation.
+Assume you have a dictionary and given a word, find whether its abbreviation is unique in the dictionary. A word's abbreviation is 
+unique if no other word from the dictionary has the same abbreviation.
 
 Example: 
 Given dictionary = [ "deer", "door", "cake", "card" ]
@@ -45,8 +47,10 @@ Hide Tags
 
 Solution:
 
-The description (A word's abbreviation is unique if no other word from the dictionary has the same abbreviation) is clear however a bit twisting. It took me a few "Wrong Answer"s to finally understand what it's asking for.
-We are trying to search for a word in a dictionary. If this word (also this word’s abbreviation) is not in the dictionary OR this word and only it’s abbreviation in the dictionary. We call a word’s abbreviation unique.
+The description (A word's abbreviation is unique if no other word from the dictionary has the same abbreviation) is clear 
+however a bit twisting. It took me a few "Wrong Answer"s to finally understand what it's asking for.
+We are trying to search for a word in a dictionary. If this word (also this word’s abbreviation) is not in the dictionary OR 
+this word and only it’s abbreviation in the dictionary. We call a word’s abbreviation unique.
 EX:
 
 1) [“dog”]; isUnique(“dig”);   

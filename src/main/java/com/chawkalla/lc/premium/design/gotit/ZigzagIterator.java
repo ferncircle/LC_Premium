@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.design;
+package com.chawkalla.lc.premium.design.gotit;
 
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -22,7 +22,8 @@ By calling next repeatedly until hasNext returns false, the order of elements re
 Follow up: What if you are given k 1d vectors? How well can your code be extended to such cases?
 
 Clarification for the follow up question - Update (2015-09-18):
-The "Zigzag" order is not clearly defined and is ambiguous for k > 2 cases. If "Zigzag" does not look right to you, replace "Zigzag" with "Cyclic". For example, given the following input:
+The "Zigzag" order is not clearly defined and is ambiguous for k > 2 cases. If "Zigzag" does not look right to you, r
+eplace "Zigzag" with "Cyclic". For example, given the following input:
 
 [1,2,3]
 [4,5,6,7]
@@ -40,7 +41,8 @@ Show Similar Problems
 
 
 Solution:
-Uses a linkedlist to store the iterators in different vectors. Every time we call next(), we pop an element from the list, and re-add it to the end to cycle through the lists.
+Uses a linkedlist to store the iterators in different vectors. Every time we call next(), we pop an element from the list, 
+and re-add it to the end to cycle through the lists.
 
 
  *

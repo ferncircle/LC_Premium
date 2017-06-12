@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.linkedlist;
+package com.chawkalla.lc.premium.linkedlist.gotit;
+
+import com.chawkalla.lc.premium.linkedlist.ListNode;
 
 /**
  * https://leetcode.com/problems/plus-one-linked-list/#/description

@@ -1,14 +1,15 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.array;
+package com.chawkalla.lc.premium.array.gotit;
 
 import java.util.HashMap;
 
 /**
  * https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/#/description
  * 
- * Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, return 0 instead.
+ * Given an array nums and a target value k, find the maximum length of a subarray that sums to k. If there isn't one, 
+ * return 0 instead.
 
 Note:
 The sum of the entire nums array is guaranteed to fit within the 32-bit signed integer range.
@@ -38,7 +39,8 @@ Hide Tags
  *
  *
  *Solution:
- *The HashMap stores the sum of all elements before index i as key, and i as value. For each i, check not only the current sum but also (currentSum - previousSum) to see if there is any that equals k, and update max length.
+ *The HashMap stores the sum of all elements before index i as key, and i as value. For each i, check not only the 
+ *current sum but also (currentSum - previousSum) to see if there is any that equals k, and update max length.
  */
 public class MaxSubarraySumEqualsK {
 
