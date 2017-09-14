@@ -12,7 +12,8 @@ The insurance table is described as follows:
 | TIV_2016    | NUMERIC(15,2) |
 | LAT         | NUMERIC(5,2)  |
 | LON         | NUMERIC(5,2)  |
-where PID is the policyholder's policy ID, TIV_2015 is the total investment value in 2015, TIV_2016 is the total investment value in 2016, LAT is the latitude of the policy holder's city, and LON is the longitude of the policy holder's city.
+where PID is the policyholder's policy ID, TIV_2015 is the total investment value in 2015, TIV_2016 is the total investment value in 2016, LAT is the latitude of the policy
+ holder's city, and LON is the longitude of the policy holder's city.
 
 Sample Input
 

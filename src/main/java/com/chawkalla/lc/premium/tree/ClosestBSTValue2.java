@@ -24,7 +24,8 @@ Hide Company Tags Google
 Hide Tags
 
 Solution 1: Two stacks
-The idea is to compare the predecessors and successors of the closest node to the target, we can use two stacks to track the predecessors and successors, then like what we do in merge sort, we compare and pick the closest one to the target and put it to the result list.
+The idea is to compare the predecessors and successors of the closest node to the target, we can use two stacks to track the predecessors and successors, then like what we
+ do in merge sort, we compare and pick the closest one to the target and put it to the result list.
 
 As we know, inorder traversal gives us sorted predecessors, whereas reverse-inorder traversal gives us sorted successors.
 

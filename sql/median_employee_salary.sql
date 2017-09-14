@@ -61,8 +61,10 @@ Show Similar Problems
 
 Solution:
 this is pretty slow, but has been accepted.
-The idea is that the difference between the number of employees below and above in terms of salary either results in 0 (when odd number of employees work at the company) or 1 (when even number of employees work at the company).
-Another key idea is that when you have equal salaries, you still need an ordering to be defined in order to have the numbers add up - the only thing I could use was the Id of the employees as a secondary order.
+The idea is that the difference between the number of employees below and above in terms of salary either results in 0 (when odd number of employees work at the company)
+ or 1 (when even number of employees work at the company).
+Another key idea is that when you have equal salaries, you still need an ordering to be defined in order to have the numbers add up - the only thing I could use was the
+ Id of the employees as a secondary order.
 
 select * from Employee a 
 where 

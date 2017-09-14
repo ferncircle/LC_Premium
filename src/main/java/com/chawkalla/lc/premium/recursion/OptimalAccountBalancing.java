@@ -13,7 +13,10 @@ import java.util.Stack;
 /**
  * https://leetcode.com/problems/optimal-account-balancing/#/description
  * 
- * 	A group of friends went on holiday and sometimes lent each other money. For example, Alice paid for Bill's lunch for $10. Then later Chris gave Alice $5 for a taxi ride. We can model each transaction as a tuple (x, y, z) which means person x gave person y $z. Assuming Alice, Bill, and Chris are person 0, 1, and 2 respectively (0, 1, 2 are the person's ID), the transactions can be represented as [[0, 1, 10], [2, 0, 5]].
+ * 	A group of friends went on holiday and sometimes lent each other money. For example, Alice paid for Bill's lunch for $10.
+ *  Then later Chris gave Alice $5 for a taxi ride. We can model each transaction as a tuple (x, y, z) which means person 
+ *  x gave person y $z. Assuming Alice, Bill, and Chris are person 0, 1, and 2 respectively (0, 1, 2 are the person's ID), 
+ *  the transactions can be represented as [[0, 1, 10], [2, 0, 5]].
 
 Given a list of transactions between a group of people, return the minimum number of transactions required to settle the debt.
 
@@ -56,7 +59,11 @@ Hide Company Tags Google
  * 
  * 
  * Solution:
- * Hi there! Guys in the problem, construct an isolated system. It mean the total amount of money in the system keeps constant. Thus, what matters is the amount of extra money each person have after all transactions complete. For example, if id1 gave id2 5$, then after that transaction id1's money decreased to 5$, on the contrary id2's money increased to 5$. That way, we know how did change account of each person. For imagination let's consider the following input [[1,2,3],[2,3,5], [4,1,6]]:
+ * Hi there! Guys in the problem, construct an isolated system. It mean the total amount of money in the system keeps 
+ * constant. Thus, what matters is the amount of extra money each person have after all transactions complete. 
+ * For example, if id1 gave id2 5$, then after that transaction id1's money decreased to 5$, on the contrary id2's money 
+ * increased to 5$. That way, we know how did change account of each person. For imagination let's consider the following 
+ * input [[1,2,3],[2,3,5], [4,1,6]]:
 
            id|  trans |  total |
           ---------------------

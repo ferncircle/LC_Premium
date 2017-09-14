@@ -3,6 +3,9 @@
  */
 package com.chawkalla.lc.premium.dp;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 /**
  * 
  * https://leetcode.com/problems/paint-fence/#/description
@@ -59,19 +62,76 @@ public class PaintFence {
 	public int numWays(int n, int k) {
 	    if(n == 0) return 0;
 	    else if(n == 1) return k;
-	    int diffColorCounts = k*(k-1);
+	    int[] diffColorCounts=new int[n+1];
+	    int[] sameColorCounts=new int[n+1];
+	    
+	    diffColorCounts[0]=1; diffColorCounts[1]=k; diffColorCounts[2]=k*(k-1); //k ways to choose first fence and k-1 ways to paint second fence
+	    sameColorCounts[0]=1; sameColorCounts[1]=k; sameColorCounts[2]=k; //k ways to paint first fence which is continued to second fence
+	    for (int i = 3; i <=n; i++) { //start with third post now
+			sameColorCounts[i]=diffColorCounts[i-1]* 1; //only one way of doing it
+			diffColorCounts[i]=(sameColorCounts[i-1]+diffColorCounts[i-1])*(k-1); // k-1 ways of doing it
+		}
+	    return diffColorCounts[n]+sameColorCounts[n];
+	    		
+	    //space optimized way of doing
+	   /* int diffColorCounts = k*(k-1);
 	    int sameColorCounts = k;
 	    for(int i=2; i<n; i++) {
 	        int temp = diffColorCounts;
 	        diffColorCounts = (diffColorCounts + sameColorCounts) * (k-1);
 	        sameColorCounts = temp;
 	    }
-	    return diffColorCounts + sameColorCounts;
+	    return diffColorCounts + sameColorCounts;*/
+	}
+	
+	
+	/**
+	 * Approach 2: For 3 posts:
+	 * if first and second have same color(k) then third can have k-1 options=k*(k-1)
+	 * if first and second have diff color(k*k-1) then third has k options= k*(k-1)*k
+	 * 
+	 * total for f(3)=k*(k-1)+k*(k-1)*k=(k-1)(k+k*k)
+	 * but we know f(1)=k and f(2)=k*k
+	 * so 
+	 * f(3) =(k-1)(f(1)+f(2))
+	 */
+	public int numWays1(int n, int k) {
+	    if(n == 0) return 0;
+	    else if(n == 1) return k;
+	    
+	    int[] dp={0,k,k*k,0};
+	    
+	    for (int i = 2; i < n; i++) {
+			
+	    	dp[3]=(k-1)*(dp[1]+dp[2]);
+	    	dp[1]=dp[2];
+	    	dp[2]=dp[3];
+		}
+	    
+	    return dp[3];
+	}
+	
+	/**
+	 * Linear recurrence using Matrix
+	 */
+	public int numWays2(int n, int k) {
+	    if(n == 0) return 0;
+	    else if(n == 1) return k;
+	    
+	    int[][] Q={{0, 1},{k-1, k-1}};
+	    int[][] initial={{k},{k*k}};
+	    
+	    return 0;
 	}
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		assertThat(new PaintFence().numWays(3, 3), is(24));
+		assertThat(new PaintFence().numWays(5, 3), is(180));
+		assertThat(new PaintFence().numWays(10, 3), is(27408));
+		
+		System.out.println("all cases passed");
 
 	}
 
