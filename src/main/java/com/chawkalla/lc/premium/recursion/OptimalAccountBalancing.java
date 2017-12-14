@@ -75,9 +75,14 @@ Hide Company Tags Google
          ----------------------
            4 |    -6  |   -6   |
          ----------------------
-Now, we have some negative account changes and positive account changes. By the way it is not hard to see that they compensate each other. Now, our task is to balance the accounts, by performing minimal amount of transactions. For instance we can balance these accounts, by performing the following transactions: [1,2,2], [3,4,5], [1,4,1]. After that, all accounts become balanced, i.e 0 extra money in total. But we have performed 3 transactions. Can we do better? May be. The number of transactions depend on the order of pairs taking part in each transaction. Consequently, the next question is, 'how to know which set of pairs give minimum number of transactions?'. One solution idea is just, brute force through all pairs and just take the minimum number of transactions. Another idea is just take some random combinations of pairs and take the minimum number of trans so far.
+Now, we have some negative account changes and positive account changes. By the way it is not hard to see that they compensate each other. Now, our task is to balance the accounts, by performing minimal amount of
+ transactions. For instance we can balance these accounts, by performing the following transactions: [1,2,2], [3,4,5], [1,4,1]. After that, all accounts become balanced, i.e 0 extra money in total. But we have 
+ performed 3 transactions. Can we do better? May be. The number of transactions depend on the order of pairs taking part in each transaction. Consequently, the next question is, 'how to know which set of pairs give
+  minimum number of transactions?'. One solution idea is just, brute force through all pairs and just take the minimum number of transactions. Another idea is just take some random combinations of pairs and take
+   the minimum number of trans so far.
 
-P.S: May be there are other elegant and exact solutions and this solution doesn't pretend to the best one, but it is quite reasonable. The more random shuffles you do, the more probability of hitting the answer. For that test cases 1000 is enough, may be less...
+P.S: May be there are other elegant and exact solutions and this solution doesn't pretend to the best one, but it is quite reasonable. The more random shuffles you do, the more probability of hitting the answer.
+ For that test cases 1000 is enough, may be less...
  *
  */
 public class OptimalAccountBalancing {

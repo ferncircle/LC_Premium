@@ -61,21 +61,21 @@ public class BinaryTreeUpsideDown {
 	public TreeNode upsideDownBinaryTreeIterative(TreeNode root) {
 	    TreeNode curr = root;
 	    TreeNode next = null;
-	    TreeNode temp = null;
-	    TreeNode prev = null;
+	    TreeNode prevRight = null;
+	    TreeNode newHead = null;
 	    
 	    while(curr != null) {
 	        next = curr.left;
 	        
 	        // swapping nodes now, need temp to keep the previous right child
-	        curr.left = temp;
-	        temp = curr.right;
-	        curr.right = prev;
+	        curr.left = prevRight;
+	        prevRight = curr.right;
+	        curr.right = newHead;
 	        
-	        prev = curr;
+	        newHead = curr;
 	        curr = next;
 	    }
-	    return prev;
+	    return newHead;
 	}  
 		
 	public static void main(String[] args) {

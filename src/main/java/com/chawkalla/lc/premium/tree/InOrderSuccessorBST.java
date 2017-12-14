@@ -18,15 +18,15 @@ Hide Tags
  */
 public class InOrderSuccessorBST {
 
-	public TreeNode successor(TreeNode root, TreeNode p) {
-		if (root == null)
+	public TreeNode successor(TreeNode cur, TreeNode p) {
+		if (cur == null)
 			return null;
 
-		if (root.val <= p.val) {
-			return successor(root.right, p);
+		if (cur.val <= p.val) {
+			return successor(cur.right, p);
 		} else {
-			TreeNode left = successor(root.left, p);
-			return (left != null) ? left : root;
+			TreeNode left = successor(cur.left, p);
+			return (left != null) ? left : cur;
 		}
 	}
 

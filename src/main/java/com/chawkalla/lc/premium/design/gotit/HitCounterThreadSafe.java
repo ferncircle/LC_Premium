@@ -3,6 +3,9 @@
  */
 package com.chawkalla.lc.premium.design.gotit;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicLongArray;
@@ -62,25 +65,27 @@ I use a queue to record the information of all the hits. Each time we call the f
 elements which hits beyond 5 mins (300). The result would be the length of the queue : )
  *
  */
-public class HitCounter {
-    private int[] times;
-    private int[] hits;    
+public class HitCounterThreadSafe {
+    private AtomicLongArray times;
+    private AtomicLongArray hits;    
     
     /** Initialize your data structure here. */
-    public HitCounter() {
-        times = new int[300];
-        hits = new int[300];
+    public HitCounterThreadSafe() {
+        times = new AtomicLongArray(300);
+        hits = new AtomicLongArray(300);
     }
     
     /** Record a hit.
         @param timestamp - The current timestamp (in seconds granularity). */
     public void hit(int timestamp) {
         int index = timestamp % 300;
-        if (times[index] != timestamp) {
-            times[index] = timestamp;
-            hits[index] = 1;
+        long currentTime=times.get(index);
+        long currentHits=hits.get(index);
+        if ( currentTime!= timestamp) {
+            times.compareAndSet(index, currentTime, timestamp);
+            hits.compareAndSet(index, currentHits, 1);
         } else {
-            hits[index]++;
+            hits.incrementAndGet(index);
         }
     }
     
@@ -89,33 +94,25 @@ public class HitCounter {
     public int getHits(int timestamp) {
         int total = 0;
         for (int i = 0; i < 300; i++) {
-            if (timestamp - times[i] < 300) {
-                total += hits[i];
+            if (timestamp - times.get(i) < 300) {
+                total += hits.get(i);
             }
         }
         return total;
     }
     
-    Queue<Integer> q = new LinkedList<Integer>();;
-    
-    /** Record a hit.
-        @param timestamp - The current timestamp (in seconds granularity). */
-    public void hit1(int timestamp) {
-        q.offer(timestamp);
-    }
-    
-    /** Return the number of hits in the past 5 minutes.
-        @param timestamp - The current timestamp (in seconds granularity). */
-    public int getHits1(int timestamp) {
-        while(!q.isEmpty() && timestamp - q.peek() >= 300) {
-            q.poll();
-        }
-        return q.size();
-    }
-    
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		HitCounterThreadSafe hc=new HitCounterThreadSafe();
+		
+		hc.hit(1);
+		hc.hit(1);
+		hc.hit(1);
+		hc.hit(2);
+		hc.hit(2);
 
+		assertThat(hc.getHits(4), is(5));
+		System.out.println("all cases passed");
 	}
 
 }

@@ -3,6 +3,9 @@
  */
 package com.chawkalla.lc.premium.graph.gotit;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -49,25 +52,24 @@ Given the following words in dictionary,
 ]
 The order is invalid, so return "".
 
-Note:
-You may assume all letters are in lowercase.
-You may assume that if a is a prefix of b, then a must appear before b in the given dictionary.
-If the order is invalid, return an empty string.
-There may be multiple valid order of letters, return any one of them is fine.
+Solution:
+
+* Just compare current word with next word, instead of comparing rest of the words
+* Use bfs approach in inDegrees count. 
+* In the absense of cycle, the count of characters collected(inDegrees=0) should be equal to total characters present
+
+
  *
  */
 public class AlienDictionary {
 
 	public String alienOrder(String[] words) {
 	    Map<Character, Set<Character>> map=new HashMap<Character, Set<Character>>();
-	    Map<Character, Integer> degree=new HashMap<Character, Integer>();
+	    int[] inDegrees=new int[256];
+	    Set<Character> uniques=new HashSet<Character>();
 	    String result="";
 	    if(words==null || words.length==0) return result;
-	    for(String s: words){
-	        for(char c: s.toCharArray()){
-	            degree.put(c,0);
-	        }
-	    }
+	    
 	    for(int i=0; i<words.length-1; i++){
 	        String cur=words[i];
 	        String next=words[i+1];
@@ -75,37 +77,44 @@ public class AlienDictionary {
 	        for(int j=0; j<length; j++){
 	            char c1=cur.charAt(j);
 	            char c2=next.charAt(j);
+	            uniques.add(c1);uniques.add(c2);
 	            if(c1!=c2){
-	                Set<Character> set=new HashSet<Character>();
-	                if(map.containsKey(c1)) set=map.get(c1);
-	                if(!set.contains(c2)){
-	                    set.add(c2);
-	                    map.put(c1, set);
-	                    degree.put(c2, degree.get(c2)+1);
+	            	map.putIfAbsent(c1, new HashSet<Character>());
+	                if(!map.get(c1).contains(c2)){
+	                	map.get(c1).add(c2);
+	                    inDegrees[c2]++;
 	                }
 	                break;
 	            }
 	        }
 	    }
 	    Queue<Character> q=new LinkedList<Character>();
-	    for(char c: degree.keySet()){
-	        if(degree.get(c)==0) q.add(c);
-	    }
+	    for(char c: uniques)
+	        if(inDegrees[c]==0) q.add(c);
+	    
 	    while(!q.isEmpty()){
 	        char c=q.remove();
 	        result+=c;
-	        if(map.containsKey(c)){
-	            for(char c2: map.get(c)){
-	                degree.put(c2,degree.get(c2)-1);
-	                if(degree.get(c2)==0) q.add(c2);
-	            }
-	        }
+	        if(map.containsKey(c))
+	            for(char c2: map.get(c))
+	            	if(--inDegrees[c2]==0) q.add(c2);         
+	        
 	    }
-	    if(result.length()!=degree.size()) return "";
+	    if(result.length()!=uniques.size()) return "";
 	    return result;
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		assertThat(new AlienDictionary().alienOrder(new String[]{"z",
+				  "x",
+				  "z",}), is(""));
+		assertThat(new AlienDictionary().alienOrder(new String[]{"wrt",
+				  "wrf",
+				  "er",
+				  "ett",
+				  "rftt"}), is("wertf"));
+		
+		
+		System.out.println("all cases passed");
 
 	}
 

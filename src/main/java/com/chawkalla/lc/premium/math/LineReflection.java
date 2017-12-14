@@ -25,7 +25,11 @@ Special thanks to @memoryless for adding this problem and creating all test case
 Hide Company Tags Google
 Hide Tags
 
-
+Solution:
+1) Get the max and min x-coordinate. The reflection line has to go through (max+min)/2
+2) For each point, it's corresponding counterpart x-coordinate would be (max+min)-x
+e.g. let's say max=7 and min=1; the reflection line has to go through (4,0).
+If there's point (2,0) then it's counterpart will be (8-2) i.e. (6,0)
 
  *
  */

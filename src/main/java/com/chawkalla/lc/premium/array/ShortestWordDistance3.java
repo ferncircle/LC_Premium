@@ -3,6 +3,9 @@
  */
 package com.chawkalla.lc.premium.array;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 /**
  * https://leetcode.com/problems/shortest-word-distance-iii/#/description
  * 
@@ -30,23 +33,28 @@ Hide Tags
  */
 public class ShortestWordDistance3 {
 
-	 public int shortestWordDistance(String[] words, String word1, String word2) {
-         int index = -1;
-         int min = words.length;
-         for (int i = 0; i < words.length; i++) {
-             if (words[i].equals(word1) || words[i].equals(word2)) {
-                 if (index != -1 && (word1.equals(word2) || !words[index].equals(words[i]))) {
-                     min = Math.min(i - index, min);
-                 }
-                 index = i;
-             }
-         }
-         return min;
-     }
-	
-	
+	public int shortestWordDistance(String[] words, String word1, String word2) {
+		int index = -1;
+		int min = words.length;
+		for (int i = 0; i < words.length; i++) {
+			String curWord=words[i];
+			if (curWord.equals(word1) || curWord.equals(word2)) {
+				if (index != -1) {
+					if(word1.equals(word2) || !words[index].equals(curWord))
+						min = Math.min(i - index, min);
+				}
+				index = i;
+			}
+		}
+		return min;
+	}
+
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
+		assertThat(new ShortestWordDistance3().shortestWordDistance(new String[]{"practice", "makes", "makes", "aeff", "coding"}, "makes", "coding"), is(2));
+		assertThat(new ShortestWordDistance3().shortestWordDistance(new String[]{"practice", "makes", "perfect", "coding", "makes"}, "makes", "makes"), is(3));
+		System.out.println("all cases passed");
 
 	}
 

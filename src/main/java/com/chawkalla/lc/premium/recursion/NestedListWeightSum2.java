@@ -37,7 +37,7 @@ Inspired by lzb700m's solution and one of mine. Instead of multiplying by depth,
 public class NestedListWeightSum2 {
 
 	public int depthSumInverse(List<NestedInteger> nestedList) {
-	    int unweighted = 0, weighted = 0;
+	    int unweighted = 0, total = 0;
 	    while (!nestedList.isEmpty()) {
 	        List<NestedInteger> nextLevel = new ArrayList<>();
 	        for (NestedInteger ni : nestedList) {
@@ -46,21 +46,18 @@ public class NestedListWeightSum2 {
 	            else
 	                nextLevel.addAll(ni.getList());
 	        }
-	        weighted += unweighted;
+	        total += unweighted;
 	        nestedList = nextLevel;
 	    }
-	    return weighted;
+	    return total;
 	}
 	
 	
 	public int depthSumInverseBFS(List<NestedInteger> nestedList) {
         if (nestedList == null) return 0;
-        Queue<NestedInteger> queue = new LinkedList<NestedInteger>();
+        Queue<NestedInteger> queue = new LinkedList<NestedInteger>(nestedList);
         int prev = 0;
         int total = 0;
-        for (NestedInteger next: nestedList) {
-            queue.offer(next);
-        }
         
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -70,9 +67,7 @@ public class NestedListWeightSum2 {
                 if (current.isInteger()) levelSum += current.getInteger();
                 List<NestedInteger> nextList = current.getList();
                 if (nextList != null) {
-                    for (NestedInteger next: nextList) {
-                        queue.offer(next);
-                    }
+                	queue.addAll(nextList);
                 }
             }
             prev += levelSum;
@@ -80,6 +75,30 @@ public class NestedListWeightSum2 {
         }
         return total;
     }
+	
+	public int sumBFS(List<NestedInteger> list){
+		
+		int total=0,unWeightedSum=0;
+		
+		Queue<NestedInteger> queue=new LinkedList<NestedInteger>(list);
+		while(!queue.isEmpty()){
+			int size=queue.size();
+			
+			for(int i=0;i<size;i++){
+				NestedInteger ni=queue.poll();
+				if(ni.isInteger())
+					unWeightedSum+=ni.getInteger();
+				else
+					queue.addAll(ni.getList());
+			}
+			
+			total+=unWeightedSum;
+		}
+		
+		return total;
+		
+		
+	}
 	
 	
 	

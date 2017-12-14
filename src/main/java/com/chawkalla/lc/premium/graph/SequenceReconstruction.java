@@ -1,7 +1,10 @@
 /**
  * 
  */
-package com.chawkalla.lc.premium.graph.gotit;
+package com.chawkalla.lc.premium.graph;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -65,6 +68,10 @@ Hide Tags
  *
  *Solution:
  *BFS Topological sort
+ *
+ *Any time we have more than one roots(with inDegree 0) there are multiple ways to pick them, so we return false
+ *e.g. {1,2} and {1,3}
+ *After 1, we'll have roots 2 and 3 both having inDegree=0 , so we return false
  */
 public class SequenceReconstruction {
 
@@ -118,7 +125,10 @@ public class SequenceReconstruction {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		assertThat(new SequenceReconstruction().sequenceReconstruction(new int[]{4,1,5,2,6,3}, new int[][]{{1,2,6,3},{4,1,5,6}}), is(true));
+		
+		assertThat(new SequenceReconstruction().sequenceReconstruction(new int[]{1,2,3}, new int[][]{{1,2},{1,3}}), is(false));
+		System.out.println("all cases passed");
 
 	}
 

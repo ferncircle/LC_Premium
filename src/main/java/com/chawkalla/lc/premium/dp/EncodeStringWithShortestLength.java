@@ -63,9 +63,9 @@ public class EncodeStringWithShortestLength {
 	public String encode(String s) {
 	    String[][] dp = new String[s.length()][s.length()];
 	    
-	    for(int l=0;l<s.length();l++) {
-	        for(int i=0;i<s.length()-l;i++) {
-	            int j = i+l;
+	    for(int len=0;len<s.length();len++) {
+	        for(int i=0;i<s.length()-len;i++) {
+	            int j = i+len;
 	            String substr = s.substring(i, j+1);
 	            // Checking if string length < 5. In that case, we know that encoding will not help.
 	            if(j - i < 4) {

@@ -3,6 +3,9 @@
  */
 package com.chawkalla.lc.premium.recursion.gotit;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
 /**
  * https://leetcode.com/problems/strobogrammatic-number-iii/#/description
  * 
@@ -78,7 +81,7 @@ public class StrobogrammaticNumber3 {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		assertThat(new StrobogrammaticNumber3().strobogrammaticInRange("50", "100"), is(3));
 
 	}
 
